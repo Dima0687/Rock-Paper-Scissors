@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background: radial-gradient(rgb(43, 204, 150), rgb(24, 117, 24));
+  background-repeat: no-repeat;
+  height: 100vh;
+  max-width: 100%;
+}
+
+h1 {
+  text-align: center;
+  margin: 2rem;
+  text-shadow: 0.1rem 0.1rem 0.4rem skyblue;
+}
+
+#result-container {
+  border: double;
+  width: 30rem;
+  margin-left: 1rem;
+}
+
+h2 {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  text-shadow: 0.1rem 0.1rem 0.4rem skyblue;
+}
+
+span.right {
+  width: 30%;
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+span.text-container {
+  border-right: 0.1rem solid black;
+  width: 60%;
+  padding: 0.4rem;
+  text-align: left;
+}
+
+#button-container {
+  margin: 2rem;
+  align-self: center;
+  width: 10rem;
+}
+
+button {
+  width: 3rem;
+  font-size: 2rem;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  text-shadow: 0.1rem 0.1rem 0.4rem skyblue;
+}
+
+.spinner::after {
+  content: '';
+  font-family: 'Font Awesome 5 Free';
+  animation: spinner 500ms ease 0s infinite;
+}
+
+@keyframes spinner {
+  0%{
+    content: ''; /* rock */
+  }
+  50%{
+    content: ''; /* paper */
+  }
+  100%{
+    content: ''; /* scissors */
+  }
+}
