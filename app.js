@@ -8,43 +8,47 @@ const choices = [
   {choice: 'rock', icon: '<i class="fa-solid fa-hand-back-fist"></i>' },
   {choice: 'paper', icon: '<i class="fa-solid fa-hand"></i>' },
   {choice: 'scissors', icon: '<i class="fa-solid fa-hand-scissors"></i>' },
-]
+];
 
-possibleChoices.forEach(possibleChoice => possibleChoice.addEventListener('click', (e) => {
-  playerChoice = e.target.closest('button');
-
-  const icon = playerChoice.firstElementChild;
-  const cloneIcon = icon.cloneNode(true);
-
-  if(playerChoiceDisplay.firstElementChild !== null){
-    playerChoiceDisplay.firstElementChild.replaceWith(cloneIcon);
-  } else {
-    playerChoiceDisplay.append(cloneIcon);
-  }
-
-  playerChoiceDisplay.title = playerChoice.title;
-
-  computerChoiceDisplay.classList.add('spinner');
-
-  if(computerChoiceDisplay.firstElementChild !== null){
-    computerChoiceDisplay.innerText = ''
-  }
-
-  if(resultDisplay.innerText !== ''){
-    resultDisplay.innerText = ''
-  }
-
-  setTimeout(() => {
-    generateComputerChoice();
-    getResult();
-  },2000)
-}));
+possibleChoices.forEach(possibleChoice => {
+  return possibleChoice.addEventListener('click', (e) => {
+    possibleChoices.forEach( choice => choice.disabled = true);
+    playerChoice = e.target.closest('button');
+    
+    const icon = playerChoice.firstElementChild;
+    const cloneIcon = icon.cloneNode(true);
+    
+    if(playerChoiceDisplay.firstElementChild !== null){
+      playerChoiceDisplay.firstElementChild.replaceWith(cloneIcon);
+    } else {
+      playerChoiceDisplay.append(cloneIcon);
+    }
+    
+    playerChoiceDisplay.title = playerChoice.title;
+    
+    computerChoiceDisplay.classList.add('spinner');
+    
+    if(computerChoiceDisplay.firstElementChild !== null){
+      computerChoiceDisplay.innerText = '';
+    }
+    
+    if(resultDisplay.innerText !== ''){
+      resultDisplay.innerText = '';
+    }
+    
+    setTimeout(() => {
+      generateComputerChoice();
+      getResult();
+    },2000);
+  });
+});
+  
 
 function generateComputerChoice(){
   const randomNumber = Math.floor( Math.random() * possibleChoices.length );
   computerChoiceDisplay.innerHTML = choices[randomNumber].icon;
   computerChoiceDisplay.title = choices[randomNumber].choice;
-  computerChoiceDisplay.classList.remove('spinner')
+  computerChoiceDisplay.classList.remove('spinner');
 }
 
 function getResult () {
@@ -83,4 +87,6 @@ function getResult () {
   }
 
   resultDisplay.innerText = result;
+
+  possibleChoices.forEach( choice => choice.disabled = false);
 }
